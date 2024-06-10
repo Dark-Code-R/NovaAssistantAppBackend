@@ -1,8 +1,7 @@
-flask==2.1.2
-flask_sqlalchemy==2.5.1
-flask_cors==3.0.10
-requests==2.27.1
-psycopg2-binary==2.9.3
-uuid==1.30
-groq==0.1.1
-gunicorn==20.1.0
+Flask==2.1.2
+Flask-SQLAlchemy==2.5.1
+Flask-Cors==3.0.10
+requests
+psycopg2-binary
+uuid
+groq
