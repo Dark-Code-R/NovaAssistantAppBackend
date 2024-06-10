@@ -1,7 +1,7 @@
 Flask==2.1.2
-Flask-SQLAlchemy==2.5.1
-Flask-Cors==3.0.10
+Werkzeug==2.0.3
+flask_sqlalchemy
+flask_cors
 requests
 psycopg2-binary
-uuid
 groq
