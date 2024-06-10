@@ -10,7 +10,7 @@ app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})   # Habilita CORS para todas las rutas
 
 # Configuración de la base de datos con la URL correcta de Railway
-DATABASE_URL = 'postgresql://postgres:YEuXGhjImPfUkXqtqlJpnkDVhdsGEtpE@roundhouse.proxy.rlwy.net:18471/railway'
+DATABASE_URL = 'postgresql://postgres:NMTgsVdJsPLaVcTSsLwdjgaKdMhsYFeD@viaduct.proxy.rlwy.net:50026/railway'
 app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
