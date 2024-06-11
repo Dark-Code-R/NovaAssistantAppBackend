@@ -1,6 +1,6 @@
 Flask
+Flask-Cors
 Flask-SQLAlchemy
-Flask-CORS
 requests
-gunicorn
 groq
+psycopg2
