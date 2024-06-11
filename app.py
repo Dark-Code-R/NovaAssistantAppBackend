@@ -1,13 +1,12 @@
-import os
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
-from flask_cors import CORS  # Importa la biblioteca CORS
+from flask_cors import CORS
 import requests
 import uuid
 from groq import Groq  # Importa la biblioteca Groq
 
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": "*"}})  # Habilita CORS para todas las rutas
+CORS(app, resources={r"/*": {"origins": "*"}})   # Habilita CORS para todas las rutas
 
 # Configuración de la base de datos con la URL correcta de Railway
 DATABASE_URL = 'postgresql://postgres:NMTgsVdJsPLaVcTSsLwdjgaKdMhsYFeD@viaduct.proxy.rlwy.net:50026/railway'
