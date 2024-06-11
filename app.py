@@ -4,10 +4,9 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 import requests
 import uuid
-from groq import Groq  # Importa la biblioteca Groq
 
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": "*"}})   # Habilita CORS para todas las rutas
+CORS(app, resources={r"/*": {"origins": "*"}})  # Habilita CORS para todas las rutas
 
 # Configuración de la base de datos con la URL correcta de Railway
 DATABASE_URL = 'postgresql://postgres:NMTgsVdJsPLaVcTSsLwdjgaKdMhsYFeD@viaduct.proxy.rlwy.net:50026/railway'
@@ -34,7 +33,7 @@ with app.app_context():
     db.create_all()
 
 # Configuración de la API Key y el modelo
-GROQ_API_KEY = os.getenv('GROQ_API_KEY', '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')
+GROQ_API_KEY = os.getenv('GROQ_API_KEY', 'tu_api_key_aqui')
 GROQ_MODEL_ID = 'mixtral-8x7b-32768'
 chat_history = {}
 
@@ -79,7 +78,7 @@ def register():
     username = data.get('username')
     password = data.get('password')
     existing_user = User.query.filter_by(username=username).first()
-    if (existing_user):
+    if existing_user:
         return jsonify({"message": "User already exists"}), 409
     new_user = User(username=username, password=password)
     db.session.add(new_user)

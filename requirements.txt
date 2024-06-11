@@ -4,3 +4,5 @@ Flask-Cors
 requests
 groq
 psycopg2-binary
+ 
+ 
