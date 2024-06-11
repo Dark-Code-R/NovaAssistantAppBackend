@@ -7,7 +7,7 @@ import uuid
 from groq import Groq  # Importa la biblioteca Groq
 
 app = Flask(__name__)
-CORS(app)   # Habilita CORS para todas las rutas
+CORS(app, resources={r"/*": {"origins": "*"}})
 
 # Configuración de la base de datos con la URL correcta de Railway
 DATABASE_URL = 'postgresql://postgres:NMTgsVdJsPLaVcTSsLwdjgaKdMhsYFeD@viaduct.proxy.rlwy.net:50026/railway'
