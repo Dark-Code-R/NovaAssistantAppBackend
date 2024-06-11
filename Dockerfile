@@ -1,17 +1,17 @@
-# Utiliza una imagen base de Python
+# Usa una imagen base oficial de Python como imagen base
 FROM python:3.9-slim
 
-# Establece el directorio de trabajo
+# Establece el directorio de trabajo en /app
 WORKDIR /app
 
-# Copia el archivo de requerimientos
+# Copia los archivos de requisitos
 COPY requirements.txt requirements.txt
 
 # Instala las dependencias
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copia el resto de los archivos de la aplicación
+# Copia el contenido del directorio local en el directorio de trabajo en el contenedor
 COPY . .
 
 # Comando para ejecutar la aplicación
-CMD ["gunicorn", "-b", "0.0.0.0:5000", "app:app"]
+CMD ["gunicorn", "--bind", "0.0.0.0:5000", "app:app"]
