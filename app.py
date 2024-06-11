@@ -4,15 +4,13 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 import requests
 import uuid
-from groq import Groq  # Importa la biblioteca Groq
-
+from groq import Groq
 
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})
 
 # Configuración de la base de datos con la URL correcta de Railway
-DATABASE_URL = 'postgresql://postgres:NMTgsVdJsPLaVcTSsLwdjgaKdMhsYFeD@viaduct.proxy.rlwy.net:50026/railway'
-app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:NMTgsVdJsPLaVcTSsLwdjgaKdMhsYFeD@viaduct.proxy.rlwy.net:50026/railway'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
@@ -80,7 +78,7 @@ def register():
     username = data.get('username')
     password = data.get('password')
     existing_user = User.query.filter_by(username=username).first()
-    if (existing_user):
+    if existing_user:
         return jsonify({"message": "User already exists"}), 409
     new_user = User(username=username, password=password)
     db.session.add(new_user)
@@ -180,4 +178,4 @@ def handle_emotion():
     return jsonify({'response': response, 'conversationId': conversation_id})
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)  # Asegúrate de usar host='0.0.0.0' para aceptar conexiones externas
+    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)), debug=True)
