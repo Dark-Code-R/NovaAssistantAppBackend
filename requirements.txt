@@ -1,7 +1,6 @@
-flask
-flask_sqlalchemy
-flask_cors
+Flask
+Flask-SQLAlchemy
+Flask-CORS
 requests
-uuid
-groq
 gunicorn
+groq
