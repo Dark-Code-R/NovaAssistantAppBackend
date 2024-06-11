@@ -179,4 +179,4 @@ def handle_emotion():
     return jsonify({'response': response, 'conversationId': conversation_id})
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)  # Asegúrate de usar host='0.0.0.0' para aceptar conexiones externas
+    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)), debug=False)  # Asegúrate de usar host='0.0.0.0' para aceptar conexiones externas
