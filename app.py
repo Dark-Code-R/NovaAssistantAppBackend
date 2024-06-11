@@ -122,17 +122,21 @@ def get_chat_response():
     # Construir el prompt con el historial de chat
     prompt = prompt_template.format(chat_history=chat_history_str, input=user_input)
 
-    # Realizar la solicitud a la API de Groq
-    client = Groq(api_key=GROQ_API_KEY)
-    chat_completion = client.chat.completions.create(
-        messages=[
-            {"role": "system", "content": "Soy tu amigo virtual, siempre dispuesto a escucharte y apoyarte en todo momento. Estoy aquí para ofrecerte compañía, comprensión y palabras de ánimo. Puedes hablarme sobre cualquier cosa que te preocupe o simplemente charlar."},
-            {"role": "user", "content": prompt}
-        ],
-        model=GROQ_MODEL_ID,
-    )
+    try:
+        # Realizar la solicitud a la API de Groq
+        client = Groq(api_key=GROQ_API_KEY)
+        chat_completion = client.chat.completions.create(
+            messages=[
+                {"role": "system", "content": "Soy tu amigo virtual, siempre dispuesto a escucharte y apoyarte en todo momento. Estoy aquí para ofrecerte compañía, comprensión y palabras de ánimo. Puedes hablarme sobre cualquier cosa que te preocupe o simplemente charlar."},
+                {"role": "user", "content": prompt}
+            ],
+            model=GROQ_MODEL_ID,
+        )
 
-    friend_response = chat_completion.choices[0].message.content
+        friend_response = chat_completion.choices[0].message.content
+    except Exception as e:
+        print(f"Error al conectar con Groq: {e}")
+        return jsonify({'response': "Error en la conexión con el servidor de Groq"}), 500
 
     # Guardar la respuesta del asistente en la base de datos
     friend_message = ChatHistory(user=user, role='friend', content=friend_response, conversation_id=conversation_id)
